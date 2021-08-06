@@ -1,0 +1,6 @@
+
+"中文顯示測試"
+
+you load this file success
+
+Good Job!!
