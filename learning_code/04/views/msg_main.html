@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>測試留言板</title>
+</head>
+<body>
+	<div>
+		<h1>留言板</h1><small>by node js</small>
+		<a href="/post">我想留言</a>
+	</div>
+	
+	<div>
+		<ul class="list-group">
+			<!-- <li>haha</li>
+	    	<li>3333</li> -->
+			{{each msgInfos}}
+	    	<li class="list-group-item">  {{ $value.name }} 說: {{ $value.message }} <span class="pull-right">{{ $value.date }}</span>  </li>
+			{{/each}}
+		</ul>
+	</div>
+
+</body>
+</html>
