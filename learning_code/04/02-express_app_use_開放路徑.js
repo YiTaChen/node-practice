@@ -7,6 +7,8 @@ var app = express()
 // 並使用 /public/a.js 進行訪問
 app.use('/public/',express.static('./public/'))
 
+//app.use('/public',express.static('public')) // 縮寫
+
 // 開放 ./public/ ex: a.js目錄底下的資料
 // 並使用 '/a/' 進行替代 '/public/'
 // 需使用 /a/a.js 進行訪問
@@ -19,6 +21,10 @@ app.use(express.static('./public/'))
 
 // 兩者同樣的話 會優先查找上面的, 找不到會再找下面的
 app.use(express.static('./public2/'))
+
+// 上述 './public/' 的縮寫
+app.use(express.static('public'))
+
 
 
 // 好處 1. 縮減大量的實體路徑 改成短短的url 
