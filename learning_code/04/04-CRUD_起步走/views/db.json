@@ -1,1 +1,33 @@
-{"students":[{"id":1,"name":"adam","gender":"1","age":"33","hobies":"tennis"},{"id":2,"name":"sherry","gender":2,"age":18,"hobies":"tennis"},{"id":3,"name":"echo","gender":1,"age":18,"hobies":"tennis"},{"name":"michelle","gender":"2","age":"22","hobies":"dance","id":6}]}
+{
+    "students":
+    [
+        {
+            "id": 1,
+            "name": "adam",
+            "gender": "1",
+            "age": "33",
+            "hobies": "tennis"
+        },
+        {
+            "id": 2,
+            "name": "sherry",
+            "gender": 2,
+            "age": 18,
+            "hobies": "tennis"
+        },
+        {
+            "id": 3,
+            "name": "echo",
+            "gender": 1,
+            "age": 18,
+            "hobies": "tennis"
+        },
+        {
+            "name": "michelle",
+            "gender": "2",
+            "age": "22",
+            "hobies": "dance",
+            "id": 6
+        }
+    ]
+}
