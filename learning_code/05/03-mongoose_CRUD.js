@@ -55,6 +55,22 @@ var person = new User({
 // 	else{ console.log(result) }
 // })
 
+// var printId = function(item){ for(i = 0 ; i < item.length ; i++){
+//  console.log(item[i]._id)  }}
+
+// User.find( {age : 18} ).where('age').gt(10).exec(function(err,result){
+// 	if(err){ console.log('查詢失敗') }
+// 	else{ printId(result) }
+// 	}
+// )
+
+User.find().exec(function(err,result){
+	if(err){console.log(err)}
+		else{console.log(result)}
+})
+
+
+
 // 這裡
 // var findAll = User.find().exec(function(err,result){
 // 	if(err){ console.log('查詢失敗') }
@@ -71,16 +87,16 @@ var person = new User({
 // findAll
 
 
-// 修改 update
-User.updateOne( {userName : "adam" } , { age : 26 } , function(err, result){
-	if(err){console.log(err)}
-		else{
-			User.find().exec(function(err2,result){
-				if(err2){ console.log('查詢失敗') }
-				else{ console.log(result) }
-			})	
-		}
-} )
+// // 修改 update
+// User.updateOne( {userName : "adam" } , { age : 26 } , function(err, result){
+// 	if(err){console.log(err)}
+// 		else{
+// 			User.find().exec(function(err2,result){
+// 				if(err2){ console.log('查詢失敗') }
+// 				else{ console.log(result) }
+// 			})	
+// 		}
+// } )
 
 
 
