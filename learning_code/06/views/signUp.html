@@ -1,0 +1,65 @@
+
+{{ extend './_layouts/signPage.html' }}
+
+{{ block 'body' }}
+
+<main class="form-signin">
+  <form id="form-signUp" method="post" action="/signUp">
+    <img class="mb-4" src="/public/img/bootstrap-logo.svg" alt="" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">Let's sign up~</h1>
+
+    <div class="form-floating">
+      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
+    <p></p>
+    
+    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+  </form>
+</main>
+
+{{ /block }}
+
+
+{{ block 'script' }}
+
+  <script>
+    
+  $('#form-signUp').on('submit', function(e){
+    e.preventDefault()
+    var formData = $(this).serialize()
+    $.ajax({
+      url : '/signUp',
+      type: 'post',
+      data: formData,
+      dataType: 'json',
+      success: function(data){
+        var err_code = data.err_code
+        console.log(data.err_code)
+        if(err_code === 0 ){
+          window.alert('註冊成功!!')
+          window.location.assign("/")
+        }else if(err_code === 1001){
+          window.alert('帳號已存在')
+        }else if(err_code === 3001){
+          window.alert('伺服器忙線中，請稍後在試!!')
+        }
+      }
+
+    })
+  })
+
+  </script>
+
+{{ /block }}

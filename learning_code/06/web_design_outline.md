@@ -57,6 +57,16 @@
 
 ### Router
 
-1. 
+|  路徑  |  方法  |  get參數  |  post參數  |  是否需要登陸  |  備註  |
+| 	 /		| GET   | 				|				|					| 渲染首頁 |
+| /register | GET   | 				|				|					| 渲染首頁 |　			
+| /register | POST   | email, nickname, password |				|					| 渲染首頁 |　
+| /login | GET   | 				|				|					| 渲染首頁 |　
+| /login | POST   | 	email, password			|				|					| 渲染首頁 |　
+| /logout | GET   | 				|				|					| 渲染首頁 |　
+
+
+
+
 
 

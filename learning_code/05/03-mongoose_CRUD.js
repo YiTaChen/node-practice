@@ -38,14 +38,14 @@ var person = new User({
 
 
 // // 增加
-// person.save(function(err,result){
-// 	if(err){
-// 		console.log('保存失敗!!')
-// 	}else{
-// 		console.log('保存成功~')
-// 		console.log(result)
-// 	}
-// })
+person.save(function(err,result){
+	if(err){
+		console.log('保存失敗!!')
+	}else{
+		console.log('保存成功~')
+		console.log(result)
+	}
+})
 
 
 // 查詢
@@ -64,10 +64,10 @@ var person = new User({
 // 	}
 // )
 
-User.find().exec(function(err,result){
-	if(err){console.log(err)}
-		else{console.log(result)}
-})
+// User.find().exec(function(err,result){
+// 	if(err){console.log(err)}
+// 		else{console.log(result)}
+// })
 
 
 
