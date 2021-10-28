@@ -26,10 +26,17 @@ server.on('request', function(request, response){
 
 	var resUrl = request.url
 
+	// console.log('request:')
+	// console.log(request)
+
+	console.log('resUrl:')
+	console.log(resUrl)
+
 	// true 會把資料轉成物件 而非純文字
 	var parseObj = url.parse(resUrl, true)
 
-	//console.log(parseObj)
+	console.log('parseObj:')
+	console.log(parseObj)
 
 	// 取得url 開頭字串
 	var pageUrl = parseObj.pathname

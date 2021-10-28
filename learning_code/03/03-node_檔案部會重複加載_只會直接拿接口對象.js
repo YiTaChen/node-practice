@@ -7,7 +7,7 @@ var a_Js = require('./_03-重複加載/a')
 console.log('main 加載 b')
 var b_Js = require('./_03-重複加載/b')
 
-console.log('main 加載 b => 沒反應')
+console.log('... main 加載 b => 沒反應')
 
 console.log('=> 因為加載過的 b.js 會被暫存起來(包含exports 成員)')
 

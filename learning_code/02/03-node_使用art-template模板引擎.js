@@ -3,9 +3,9 @@ var fs = require('fs')
 
 var template =  require('art-template') 
 
-var data = 'Hi {{ name }} !!'
+var sampleStr = 'Hi {{ name }} !!'
 
-var result = template.render(data, {
+var result = template.render(sampleStr, {
 
 	name: 'Jacks Pirrot'
 
