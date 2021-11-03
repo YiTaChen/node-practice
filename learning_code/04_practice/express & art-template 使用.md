@@ -1,13 +1,13 @@
 
+# express-art-template
 
-
-# 安裝：
+## 安裝：
 ```javascript=
 npm install --save art-template
 npm install --save express-art-template
 ```
 
-# 配置:
+## 配置:
 ```javascript=
 // 此處的'art' 表示檔案的後墜名
 // 表示需要被art-template 給渲染的版面檔案
@@ -15,7 +15,7 @@ npm install --save express-art-template
 app.engine('art',require('express-art-template'))
 ```
 
-# 使用:
+## 使用:
 ```javascript= 
 app.get('/',function(res,res){
 	// express 默認會去項目中的 views 目錄找 index.html

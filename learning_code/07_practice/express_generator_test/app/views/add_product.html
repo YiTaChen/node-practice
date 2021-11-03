@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>msg</title>
+</head>
+<body>
+	<form id="form-productAdd" action="/product/add" method="post">
+		<h1>添加商品</h1><small> node practice </small>
+		<div>
+			<label for="nameTxt">商品名稱</label>
+			<input type="text" name="name" id="nameTxt">
+		</div>
+		<div>
+			<label> 拍賣底價價格
+				<input type="text" name="price" >
+			</label>
+		</div>
+		<div>
+			<label> 直接購買價格
+				<input type="text" name="buyOffPrice" >
+			</label>
+		</div>
+		<div>
+			<label> 商品描述
+				<input type="text" name="description" >
+			</label>
+		</div>
+		<button type="submit">送出</button>
+	</form>
+</body>
+
+<script src="/node_modules/jquery/dist/jquery.js"></script>
+    <script>
+      $('#form-productAdd').on('submit', function(e){
+        e.preventDefault()
+        var formData = $(this).serialize()
+        $.ajax({
+          url : '/product/add',
+          type: 'post',
+          data: formData,
+          dataType: 'json',
+          success: function(data){
+            var err_code = data.err_code
+            console.log(data.err_code)
+            if(err_code === 0 ){
+              window.alert('添加商品成功!!')
+              window.location.assign("/")
+            }else if(err_code === 3001){
+              window.alert('伺服器忙線中，請稍後在試!!')
+            }
+          }
+        })
+      })
+    </script>
+
+
+</html>
