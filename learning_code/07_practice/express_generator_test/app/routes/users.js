@@ -65,7 +65,7 @@ router.post('/sign_up', function(req, res, next){
       return next(err)
     }
     // console.log('finish step 2')
-  
+
     if(data){
       console.log(data)
       return res.status(200).json({
@@ -97,11 +97,8 @@ router.post('/sign_up', function(req, res, next){
 })
 
 router.get('/logout' , function(req, res){
-
   req.session.user = null
-
   res.redirect('/')
-
 })
 
 module.exports = router;

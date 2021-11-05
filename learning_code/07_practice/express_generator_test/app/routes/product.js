@@ -1,7 +1,9 @@
 var express = require('express');
 var User = require('../models/userModel.js')
 var Product = require('../models/productModel.js')
+var commFun = require('../models/commFun.js')
 var md5 = require('blueimp-md5')
+var mongoose = require('mongoose')
 
 var router = express.Router();
 
@@ -17,63 +19,59 @@ router.get('/add', function(req, res){
 router.post('/add', function(req, res, next){
 
   var body = req.body
-
-  body.oriPrice = body.price
-  
-  new Product(body).save(function(err, user){
-    if(err){
-      return next(err)
-    }
-
+  // console.log(body.price)
+  if(!body.price || body.price.trim == '' ){
     res.status(200).json({
-      err_code: 0,
-      message: 'OK'
+      err_code: 888,
+      message: 'price can not be empty.'
     })
-  })
-})
+  }
+  // console.log(body.name)
+  if(!body.name || body.name.trim() == '' ){
+    res.status(200).json({
+      err_code: 999,
+      message: 'name can not be empty.'
+    })
+  }
+  else{
+    var userData = req.session.user
+    
+    body.oriPrice = body.price
+    body.sid = commFun.getNewSid()
+    
+    if(!userData || !userData.nickName||userData.nickName.trim() == ''){body.bidder = '匿名'}
+    else {body.bidder = userData.nickName}
 
+    new Product(body).save(function(err, user){
+      if(err){
+        return next(err)
+      }
 
-
-router.post('/signin', function(req, res, next){
-
-  var body = req.body
-
-  User.findOne({
-    email: body.email,
-    password: md5(md5(body.password))
-  }, function(err, user){
-    if(err){
-      return next(err)
-    }
-    if(!user){
-      return res.status(200).json({
-        err_code:1,
-        message: 'Email or password is invalid.'
+      res.status(200).json({
+        err_code: 0,
+        message: 'OK'
       })
-    }
-
-    req.session.user = user
-
-    res.status(200).json({
-      err_code: 0,
-      message: 'OK'
     })
+  }
+})
 
+
+router.get('/edit', function(req, res){
+  
+  console.log('hooooo: ')
+  console.log(req.query.sid)
+  
+  Product.find( { sid : req.query.sid } ).exec( function(err,data){
+    if(err){console.log(err)}
+    else{console.log(data)}
+  
   })
-})
-
-router.get('/sign_up', function(req, res, next){
-  res.render('signUp.html')
-})
+  res.render('edit_product.html')
+}
+)
 
 
 
-router.get('/logout' , function(req, res){
 
-  req.session.user = null
-
-  res.redirect('/')
-
-})
 
 module.exports = router;

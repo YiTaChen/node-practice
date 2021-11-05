@@ -11,6 +11,10 @@ var productSchema = new Schema({
 		type: String,
 		require: true
 	},
+	sid: {
+		type: String,
+		require: true
+	},
 	name: {
 		type: String,
 		require: true

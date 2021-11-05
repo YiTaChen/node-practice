@@ -54,12 +54,12 @@
       <div class="row">
         <div class="col-sm-8 col-md-7 py-4">
           <h4 class="text-white">About</h4>
-          <p class="text-muted">This is a node.js project which combine node, express. For detail, pls refer github:  </p>
+          <p class="text-muted">This is a project created by node and express.<br>Database use mongodb and mongoose. <br>For detail, pls refer github</p>
         </div>
         <div class="col-sm-4 offset-md-1 py-4">
           <h4 class="text-white">Contact</h4>
           <ul class="list-unstyled">
-            <li><a href="#" class="text-white">GitHub</a></li>
+            <li><a href="https://github.com/YiTaChen/node-practice/tree/main/learning_code/07_practice/express_generator_test/app" class="text-white">GitHub</a></li>
             <li><a href="#" class="text-white">Like on Facebook</a></li>
             <li><a href="#" class="text-white">Email me</a></li>
           </ul>
@@ -121,9 +121,7 @@
               <p class="card-text">描述 : {{ $value.description }}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">我要出價</button>
-                  <!-- <input type="button" onclick="openwin()" value="開啟視窗"> -->
-                <!--   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                  <button type="button" class="btn btn-sm btn-outline-secondary"> <a href="/product/edit?sid={{ $value.sid }}">出價</a> </button>
                 </div>
                 <small class="text-muted"> 出價者 : {{$value.bidder}} </small>
                 <small class="text-muted"> Price : {{$value.price}} </small>
