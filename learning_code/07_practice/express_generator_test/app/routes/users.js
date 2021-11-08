@@ -1,5 +1,6 @@
 var express = require('express');
 var User = require('../models/userModel.js')
+var commFun = require('../models/commFun.js')
 var md5 = require('blueimp-md5')
 
 var router = express.Router();
@@ -76,8 +77,12 @@ router.post('/sign_up', function(req, res, next){
     }
 
     body.password = md5(md5(body.password))
+    
+    var userData = new User(body)
 
-    new User(body).save(function(err, user){
+    userData.created_time = userData.last_modified_time
+
+    userData.save(function(err, user){
       if(err){
         return next(err)
       }

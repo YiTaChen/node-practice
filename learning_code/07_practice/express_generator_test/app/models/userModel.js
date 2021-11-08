@@ -22,7 +22,7 @@ var userSchema = new Schema({
 	gender: {
 		type: Number,
 		enum: [-1, 0, 1, 2],
-		defualt: -1
+		default: -1
 	},
 	status: {
 		type: Number,
@@ -31,19 +31,18 @@ var userSchema = new Schema({
 		// 1  普通權限
 		// 2  高階權限
 		enum: [-1, 0, 1, 2],
-		defualt: 0
+		default: 0
 	},
 	avatar: {
 		type: String,
-		defualt: '/public/images/avatar-default.png'
+		default: '/public/images/avatar-default.png'
 	},
 	created_time: {
-		type: Date,
-		defualt: Date.now
+		type: Date
 	},
 	last_modified_time: {
 		type: Date,
-		defualt: Date.now
+		default: Date.now
 	}
 
 

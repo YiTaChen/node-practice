@@ -9,7 +9,7 @@ var productSchema = new Schema({
 
 	id: {
 		type: String,
-		require: true
+		require: false
 	},
 	sid: {
 		type: String,
@@ -49,29 +49,32 @@ var productSchema = new Schema({
 	},
 	status: {
 		type: Number,
-		// 0  尚未出價
 		// -1 管理員下架
 		// -2 賣家下架
+		// 0  尚未出價
 		// 1  競價ing
 		// 2  完成競價 
-		enum: [-1, 0, 1, 2],
-		defualt: 0
+		// 3  買家直接購買 
+		enum: [-1, 0, 1, 2, 3],
+		default: 0
+	},
+	canBidder: {
+		type: Boolean, 
+		default: true
 	},
 	avatar: {
 		type: String,
-		defualt: '/public/images/avatar-default.png'
+		default: '/public/images/avatar-default.png'
 	},
 	created_time: {
-		type: Date,
-		defualt: Date.now
+		type: Date
 	},
-	last_bidding_time: {
+	last_modify_time: {
 		type: Date,
-		defualt: Date.now
+		default: Date.now
 	},
 	auction_end_time: {
-		type: Date,
-		defualt: Date.now
+		type: Date
 	}
 
 

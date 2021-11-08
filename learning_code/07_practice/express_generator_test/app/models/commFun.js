@@ -9,3 +9,18 @@ exports.getNewSid = function(){
 	console.log(randonSid)
 	return randonSid
 }
+
+
+exports.getUserNameByReq = function(req){
+
+	if (req.session.user){
+		return req.session.user.nickName
+	}else{
+		return '匿名競標者'
+	}
+
+}
+
+exports.getDateNow = function(){
+	return new Date( Date.now() )
+}

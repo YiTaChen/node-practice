@@ -27,9 +27,9 @@ var router = express.Router();
 
 router.get('/', function(req, res, next){  
   
-  Product.find().exec(function(err, productData){
+  Product.find().sort({'last_modify_time':-1}).exec(function(err, productData){
     if(err){ return next(err) }
-    console.log( req.session.user)
+    // console.log( req.session.user)
     res.render('main.html', { products : productData, user: req.session.user })
   })
 

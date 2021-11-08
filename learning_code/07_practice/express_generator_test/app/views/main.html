@@ -120,11 +120,21 @@
             <div class="card-body">
               <p class="card-text">描述 : {{ $value.description }}</p>
               <div class="d-flex justify-content-between align-items-center">
+                
+                {{ if  $value.canBidder }}
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary"> <a href="/product/edit?sid={{ $value.sid }}">出價</a> </button>
                 </div>
                 <small class="text-muted"> 出價者 : {{$value.bidder}} </small>
                 <small class="text-muted"> Price : {{$value.price}} </small>
+                {{ else }}
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary"> <a >已結標</a> </button>
+                </div>
+                <small class="text-muted"> 得標者 : {{$value.bidder}} </small>
+                <small class="text-muted"> 結標金額 : {{$value.price}} </small>
+                {{ /if }}
+                
               </div>
             </div>
           </div>

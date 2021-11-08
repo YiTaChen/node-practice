@@ -52,124 +52,84 @@
   <main>
     <div class="py-5 text-center">
       <img class="d-block mx-auto mb-4" src="/public/images/bootstrap-logo.svg" alt="" width="72" height="57">
-      <h2>添加商品</h2>
-      <p class="lead">Let's Buy it</p>
+      <h2>競標</h2>
+      <p class="lead">Let's bidder</p>
     </div>
 
     <div class="row g-5">
-      <!-- <div class="col-md-5 col-lg-4 order-md-last">
-        <h4 class="d-flex justify-content-between align-items-center mb-3">
-          <span class="text-primary">Your cart</span>
-          <span class="badge bg-primary rounded-pill">3</span>
-        </h4>
-        <ul class="list-group mb-3">
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Product name</h6>
-              <small class="text-muted">Brief description</small>
-            </div>
-            <span class="text-muted">$12</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Second product</h6>
-              <small class="text-muted">Brief description</small>
-            </div>
-            <span class="text-muted">$8</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Third item</h6>
-              <small class="text-muted">Brief description</small>
-            </div>
-            <span class="text-muted">$5</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between bg-light">
-            <div class="text-success">
-              <h6 class="my-0">Promo code</h6>
-              <small>EXAMPLECODE</small>
-            </div>
-            <span class="text-success">−$5</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between">
-            <span>Total (USD)</span>
-            <strong>$20</strong>
-          </li>
-        </ul>
-
-        <form class="card p-2">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Promo code">
-            <button type="submit" class="btn btn-secondary">Redeem</button>
-          </div>
-        </form>
-      </div> -->
-
+     
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Product information</h4>
-        <form class="needs-validation" novalidate id="form-productAdd" action="/product/add" method="post">
+        <form class="needs-validation" novalidate id="form-productBidder" action="/product/bidder" method="post">
           <div class="row g-3">
             <div class="col-12">
-              <label for="productName" class="form-label">商品名稱</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required name="name">
+              <label for="nameLb" class="form-label">商品名稱</label>
+              <input type="text" class="form-control" id="name" placeholder="" value="{{product.name}}" required name="name" disabled>
               <div class="invalid-feedback">
                 Valid first name is required.
               </div>
             </div>
 
-            <!-- <div class="col-12">
-              <label for="sellerName" class="form-label">拍賣者</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" name="seller">
-            </div> -->
- 
-            <!-- <div class="col-12">
-              <label for="username" class="form-label">Username</label>
-              <div class="input-group has-validation">
-                <span class="input-group-text">@</span>
-                <input type="text" class="form-control" id="username" placeholder="Username" required>
-              <div class="invalid-feedback">
-                  Your username is required.
-                </div>
-              </div>
-            </div> -->
-
-            <!-- <div class="col-12">
-              <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
-              <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-              </div>
-            </div> -->
 
             <div class="col-12">
-              <label for="productDisLb" class="form-label">商品描述(option)</label>
-              <input type="text" class="form-control" id="proDescrip" placeholder="description" name="description" >
+              <label for="productDisLb" class="form-label">商品描述</label>
+              <input type="text" class="form-control" id="proDescrip" placeholder="description" name="description" disabled value="{{ product.description }}" >
               <!-- <div class="invalid-feedback">
                 Please enter your shipping address.
               </div> -->
             </div>
 
+            <h4 class="mb-3">出價競標!!</h4>
+
             <div class="col-12">
-              <label for="priceLb" class="form-label">拍賣底價價格</label>
-              <input type="number" class="form-control" id="proPrice" placeholder="ex: 1" required name="price" required>
+              <label for="oriPriceLb" class="form-label">拍賣底價價格</label>
+              <input type="number" class="form-control" id="oriPrice" placeholder="ex: 1" required name="oriPrice" required disabled value="{{product.oriPrice}}">
               <div class="invalid-feedback">
                 Please enter your price.
               </div>
             </div>
 
             <div class="col-12">
-              <label for="buyOffPriceLb" class="form-label">直接購買價格</label>
-              <input type="number" class="form-control" id="proBuyOffPrice" placeholder="ex: 9999" name="buyOffPrice">
+              <label for="priceLb" class="form-label">目前拍賣價格：</label>
+              <input type="number" class="form-control" id="price" placeholder="ex: 1" required name="price" value="{{product.price}}" required >
+              <div class="invalid-feedback">
+                Please enter your price.
+              </div>
+            </div>
+
+            
+
+
+          
+          <button class="w-100 btn btn-primary btn-lg" type="submit">競標</button>
+        </form>
+      </div>
+      <div></div>
+      {{ if  product.buyOffPrice }}
+      <form class="needs-validation" novalidate id="form-productBuyOff" action="/product/buyOff" method="post">
+        <div class="col-md-7 col-lg-8">
+          <div></div>
+          <h4 class="mb-3"> </h4>
+          <h4 class="mb-3"></h4>
+          <h4 class="mb-3"></h4>
+          <h4 class="mb-3">還是...直接買下來~</h4>
+            
+              
+              <div class="col-12">
+              <label for="buyOffPriceLb" class="form-label">直接購買價格：</label>
+              <input type="number" class="form-control" id="proBuyOffPrice" placeholder="ex: 9999" name="buyOffPrice" disabled value="{{product.buyOffPrice}}">
               <!-- <div class="invalid-feedback">
                 Please enter your shipping address.
               </div> -->
             </div>
 
+              <button class="w-100 btn btn-primary btn-lg" type="submit">我要直接購買!!</button>
+            
+        </div>
+      </form>
+      {{ else }}
+      {{ /if }}
 
-          
-          <button class="w-100 btn btn-primary btn-lg" type="submit">拍賣</button>
-        </form>
-      </div>
     </div>
   </main>
 
@@ -193,11 +153,11 @@
 
   <script src="/node_modules/jquery/dist/jquery.js"></script>
     <script>
-      $('#form-productAdd').on('submit', function(e){
+      $('#form-productBidder').on('submit', function(e){
         e.preventDefault()
         var formData = $(this).serialize()
         $.ajax({
-          url : '/product/add',
+          url : '/product/bidder',
           type: 'post',
           data: formData,
           dataType: 'json',
@@ -205,12 +165,35 @@
             var err_code = data.err_code
             console.log(data.err_code)
             if(err_code === 0 ){
-              window.alert('添加商品成功!!')
+              window.alert('出價成功!!')
               window.location.assign("/")
-            }else if(err_code === 888){
-              window.alert('請輸入底價')
-            }else if(err_code === 999){
-              window.alert('請輸入拍賣物品名稱')
+            }else if(err_code === 333){
+              window.alert('請輸入競標價格')
+            }else if(err_code === 3001){
+              window.alert('伺服器忙線中，請稍後在試!!')
+            }else if(err_code === 500){
+              window.alert('伺服器忙線中，請稍後在試!!')
+            }
+          }
+        })
+      })
+    </script>
+
+    <script>
+      $('#form-productBuyOff').on('submit', function(e){
+        e.preventDefault()
+        var formData = $(this).serialize()
+        $.ajax({
+          url : '/product/buyOff',
+          type: 'post',
+          data: formData,
+          dataType: 'json',
+          success: function(data){
+            var err_code = data.err_code
+            console.log(data.err_code)
+            if(err_code === 0 ){
+              window.alert('成功買下商品!!')
+              window.location.assign("/")
             }else if(err_code === 3001){
               window.alert('伺服器忙線中，請稍後在試!!')
             }else if(err_code === 500){
