@@ -2,6 +2,7 @@
 var fs = require('fs')
 var Student = require('../student')
 var User = require('../models/userModel.js')
+var commFun = require('../models/commFun.js')
 var Product = require('../models/productModel.js')
 var bodyParser = require('body-parser')
 
@@ -25,14 +26,20 @@ var router = express.Router();
 // });
 
 
-router.get('/', function(req, res, next){  
+router.get('/', async function(req, res, next){  
   
-  Product.find().sort({'last_modify_time':-1}).exec(function(err, productData){
-    if(err){ return next(err) }
-    // console.log( req.session.user)
-    res.render('main.html', { products : productData, user: req.session.user })
-  })
+  try{
+     const productData = await Product.find().sort({'last_modify_time':-1}).exec()
+     // commFun.upDateReqUser(req)  // here req can not callby ref
+      
+     req.session.user = commFun.isNormalUserByReq(req)? await User.findOne({ userId : req.session.user.userId }).exec() : req.session.user
+     
+     res.render('main.html', { products : productData, user: req.session.user })
 
+  }catch(err)
+  {
+    return next(err)
+  }
 
 })
 

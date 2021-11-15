@@ -9,7 +9,8 @@ var productSchema = new Schema({
 
 	id: {
 		type: String,
-		require: false
+		require: false,
+		unique: true
 	},
 	sid: {
 		type: String,
@@ -39,11 +40,23 @@ var productSchema = new Schema({
 		type: String,
 		require: false
 	},
+	sellerId: {
+		type: String,
+		require: false
+	},
 	bidder: {
 		type: String,
 		require: false
 	},
+	bidderId: {
+		type: String,
+		require: false
+	},
 	winner: {
+		type: String,
+		require: false
+	},
+	winnerId: {
 		type: String,
 		require: false
 	},

@@ -54,14 +54,14 @@
       <div class="row">
         <div class="col-sm-8 col-md-7 py-4">
           <h4 class="text-white">About</h4>
-          <p class="text-muted">This is a project created by node and express.<br>Database use mongodb and mongoose. <br>For detail, pls refer github</p>
+          <p class="text-muted">This project is created by node and express.<br>and use mongoose to operate mongodb data. <br>For detail, pls refer my github</p>
         </div>
         <div class="col-sm-4 offset-md-1 py-4">
           <h4 class="text-white">Contact</h4>
           <ul class="list-unstyled">
             <li><a href="https://github.com/YiTaChen/node-practice/tree/main/learning_code/07_practice/express_generator_test/app" class="text-white">GitHub</a></li>
-            <li><a href="#" class="text-white">Like on Facebook</a></li>
-            <li><a href="#" class="text-white">Email me</a></li>
+            <!-- <li><a href="#" class="text-white">Like on Facebook</a></li>
+            <li><a href="#" class="text-white">Email me</a></li> -->
           </ul>
         </div>
       </div>
@@ -76,6 +76,9 @@
       {{ if  user }}
       <a href="#" class="navbar-brand d-flex align-items-center">
         <strong>Wellcome {{ user.nickName }} </strong>
+      </a>
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <strong>your Credit : {{ user.credit }} </strong>
       </a>
       {{ else }}
       <a href="#" class="navbar-brand d-flex align-items-center">

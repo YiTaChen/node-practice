@@ -19,7 +19,7 @@ router.post('/login', function(req, res, next){
   var body = req.body
 
   User.findOne({
-    email: body.email,
+    nickName: body.nickName,
     password: md5(md5(body.password))
   }, function(err, user){
     if(err){
@@ -28,10 +28,10 @@ router.post('/login', function(req, res, next){
     if(!user){
       return res.status(200).json({
         err_code:1002,
-        message: 'Email or password is invalid.'
+        message: 'nick name or password is invalid.'
       })
     }
-
+    console.log(user)
     req.session.user = user
 
     res.status(200).json({
@@ -53,35 +53,43 @@ router.post('/sign_up', function(req, res, next){
   // console.log(body)
   // console.log('finish step 1')
   User.findOne({
-    $or: [{
-      email: body.email
-    }
-    ,{
-      nickName: body.nickName
-    }
-    ]
+    nickName: body.nickName
+    // $or: [{
+    //   email: body.email
+    // }
+    // ,{
+    //   nickName: body.nickName
+    // }
+    // ]
   }, function( err, data){
+    
+    // catch err
     if(err){
       console.log(err)
       return next(err)
     }
-    // console.log('finish step 2')
 
+    // check data
     if(data){
       console.log(data)
       return res.status(200).json({
         err_code: 1001,
-        message: 'Email or nickname already exists!!'
+        message: 'nickname already exists!!'
       })
-      return res.send('email already exists, pls use another.')
+      return res.send('nick name already exists, pls use another.')
     }
 
+    // encode password
     body.password = md5(md5(body.password))
-    
+  
+    // init userData    
     var userData = new User(body)
 
     userData.created_time = userData.last_modified_time
+    userData.credit = 1000
+    userData.userId = commFun.getNewUserSid()
 
+    // save func
     userData.save(function(err, user){
       if(err){
         return next(err)

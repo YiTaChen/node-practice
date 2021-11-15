@@ -7,6 +7,12 @@ var Schema = mongoose.Schema
 
 var userSchema = new Schema({
 
+	userId: {
+		// -1 is 
+		type: String,
+		require: false,
+		unique: true
+	},
 	email: {
 		type: String,
 		require: false
@@ -18,6 +24,9 @@ var userSchema = new Schema({
 	nickName: {
 		type: String,
 		require: false
+	},
+	credit: {
+		type: Number
 	},
 	gender: {
 		type: Number,
